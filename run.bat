@@ -13,6 +13,8 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
+echo Stopping any old server on port 5000...
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5000" ^| findstr "LISTENING"') do taskkill /F /PID %%a >nul 2>nul
 python seed.py
 start "MetroX Server" cmd /k "python app.py"
 timeout /t 3 /nobreak >nul

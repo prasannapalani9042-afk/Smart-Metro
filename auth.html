@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MetroX | Login</title>
+<title>Smart Metro Management System | Login</title>
 <link rel="stylesheet" href="auth.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
 </head>
 <body>
 <div class="auth">
   <section class="hero">
-    <div class="logo"><div class="mark">M</div><h1>Metro<span>X</span></h1></div>
-    <h2>Smart travel.<br>Simple journeys.</h2>
-    <p>A modern college-project interface for metro route planning, fares, tickets and station services.</p>
+    <div class="logo"><div class="mark">M</div><h1>Smart <span>Metro</span></h1></div>
+    <h2>Smart Metro<br>Management System</h2>
+    <p>Manage stations, trains, routes and schedules, and book tickets with automatic fares, all in one place.</p>
     <div class="features">
       <div>⇄ Route Finder</div><div>₹ Fare Calculator</div>
-      <div>🎫 Demo QR Ticket</div><div>🚆 Simulated Train Status</div>
+      <div>🎫 Online Ticket Booking</div><div>🚆 Train Status</div>
     </div>
   </section>
   <section class="box">
@@ -24,7 +27,7 @@
     </div>
 
     <form id="loginForm" class="form active">
-      <h2>Welcome back</h2><div class="sub">Sign in to MetroX</div>
+      <h2>Welcome back</h2><div class="sub">Sign in to Smart Metro Management System</div>
       <div class="field"><label>EMAIL</label><input id="loginEmail" type="email" required placeholder="you@example.com"></div>
       <div class="field"><label>PASSWORD</label>
         <div class="pwd-wrap"><input id="loginPassword" type="password" required placeholder="••••••••"><span class="pwd-eye" onclick="togglePwd('loginPassword',this)">👁</span></div>

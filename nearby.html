@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MetroX | Nearby Station</title>
+<title>Smart Metro Management System | Nearby Station</title>
 <link rel="stylesheet" href="nearby.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
-<div class="brand"><div class="brandmark">M</div><div><h2>Metro<span>X</span></h2><small>SMART METRO</small></div></div>
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
 <nav class="nav">
     <a href="index.html"><i>⌂</i>Dashboard</a>
     <a href="route.html"><i>⇄</i>Route Finder</a>
-    <a href="lines.html"><i>◉</i>Metro Lines</a>
     <a href="fare.html"><i>₹</i>Fare Calculator</a>
     <a href="travel-time.html"><i>◷</i>Travel Time</a>
-    <a href="live-train.html"><i>🚆</i>Live Train</a>
     <a href="nearby.html"><i>⌖</i>Nearby Station</a>
-    <a href="ticket.html"><i>▤</i>QR Ticket</a>
+    <a href="ticket.html"><i>▤</i>Book Ticket</a>
     <a href="favorites.html"><i>♡</i>Favorites</a>
-    <a href="history.html"><i>◴</i>History</a>
+    <a href="history.html"><i>◴</i>Booking History</a>
     <a href="admin/admin-dashboard.html"><i>⚙</i>Admin</a>
 
 </nav>
@@ -28,14 +29,14 @@
 <main class="main">
 <header class="topbar">
 <div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Nearby Station</h3></div></div>
-<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>MetroX User</small></div></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
 </header>
 <div class="toast" id="toast"></div>
 <section class="content">
 <div class="heading"><div><div class="eyebrow">LOCATION FINDER</div><h1>Nearby Station Finder</h1><p>Discover the closest metro stations to you.</p></div><div class="hero-icon">⌖</div></div>
 <div class="card"><div class="card-title"><div class="title-icon">⌖</div><div><h2>Find stations near you</h2><p>Uses your device location.</p></div></div><button class="btn primary" id="nearbyBtn">Find Stations Near Me</button><div id="nearbyResult" style="margin-top:14px"></div></div>
 </section>
-<footer>© 2026 MetroX · Smart Metro Travel System</footer>
+<footer>© 2026 Smart Metro Management System</footer>
 </main>
 <script src="backend.js"></script>
 <script src="nearby.js"></script>

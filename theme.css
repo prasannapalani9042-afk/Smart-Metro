@@ -1,0 +1,322 @@
+/* =====================================================================
+   MetroX "Transit Signage" design
+   Top navigation bar (like a station sign), Blue + Green line colours,
+   bold readable text, metro-train icons.  Loaded after each page's css.
+   ===================================================================== */
+:root {
+  --bg:#e9eef5; --panel:#ffffff; --line:#d5dfe9; --text:#0f1f33; --muted:#4b5f75;
+  --navy:#072a73; --cyan:#0b3fa8; --blue:#0b3fa8; --green:#f2b705; --gold:#f5c400; --steel:#5b6573;
+  --danger:#c0213f; --success:#0f8a4f; --orange:#c76a00;
+  --shadow:0 6px 20px rgba(15,31,51,.09);
+}
+html { background:var(--bg); }
+body { background:transparent; position:relative; color:var(--text); font-size:17px; line-height:1.55; }
+
+/* ---------- top navigation bar ---------- */
+.sidebar { position:fixed !important; inset:0 0 auto 0 !important; width:auto !important; height:72px; flex-direction:row !important; align-items:center;
+  gap:18px; padding:0 22px !important; background:var(--navy) !important; border:0 !important; box-shadow:0 4px 18px rgba(11,42,91,.35);
+  transform:none !important; overflow:visible; backdrop-filter:none; }
+.sidebar::after { content:""; position:absolute; left:0; right:0; bottom:-5px; height:5px; background:linear-gradient(90deg,#1e7bff 0 50%,#1fb865 50% 100%); }
+.brand { flex-shrink:0; padding:0 !important; margin:0 !important; }
+.brand h2 { color:#fff; font-size:23px; } .brand h2 span { color:var(--gold); }
+.brand small { color:#b9ccec; font-size:11px; letter-spacing:2px; }
+.brandmark, .mark { background:#fff !important; color:var(--cyan) !important; border-radius:13px; display:grid; place-items:center; }
+.brandmark svg, .mark svg { width:27px; height:27px; }
+.nav { flex:1; display:flex !important; flex-direction:row !important; gap:2px !important; overflow-x:auto; scrollbar-width:none; margin:0 !important; padding:0 !important; }
+.nav::-webkit-scrollbar { display:none; }
+.nav a { white-space:nowrap; display:flex; align-items:center; gap:7px; color:#d6e4fb; font-size:14.5px; font-weight:600; padding:9px 12px !important; border-radius:11px; background:none; box-shadow:none; }
+.nav a i { width:22px; height:22px; display:inline-grid; place-items:center; background:none !important; color:inherit !important; margin:0; font-style:normal; }
+.nav a i svg { width:21px; height:21px; }
+.nav a:hover { background:rgba(255,255,255,.14); color:#fff; }
+.nav a.active { background:#fff; color:var(--navy); font-weight:800; }
+.logout { width:auto !important; margin:0 !important; padding:9px 16px !important; background:transparent; color:#fff; border:2px solid rgba(255,255,255,.55); font-size:14.5px; font-weight:800; border-radius:11px; flex-shrink:0; }
+.logout:hover { background:rgba(255,255,255,.16); }
+.main { margin-left:0 !important; width:100% !important; padding-top:77px; }
+.menu { display:none !important; }
+
+/* slim title strip */
+.topbar { position:static !important; background:transparent !important; border:0 !important; height:auto !important; padding:14px 30px 0 !important; backdrop-filter:none; }
+.topbar h3 { font-size:15px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; }
+.date, .profile-info small { color:var(--muted); font-size:14px; }
+.profile { background:#fff; border:1px solid var(--line); border-radius:14px; padding:7px 14px !important; gap:10px; box-shadow:var(--shadow); }
+.profile-info strong { font-size:16px; color:var(--text); }
+.avatar { background:var(--navy) !important; color:#fff !important; }
+
+/* ---------- page heading band ---------- */
+.heading { position:relative; overflow:hidden; color:#fff; border-radius:20px; padding:28px 34px; box-shadow:0 10px 28px rgba(11,42,91,.28);
+  background:
+    linear-gradient(100deg, rgba(11,42,91,.95) 0%, rgba(20,87,184,.84) 58%, rgba(18,153,79,.78) 100%),
+    url("images/chennai-metro.jpg") center / cover no-repeat,
+    url("images/metro-bg.svg") center 60% / cover no-repeat; }
+.heading h1 { color:#fff; font-size:36px; } .heading p { color:#dce9ff; font-size:17px; }
+.eyebrow { color:var(--gold); font-size:13.5px; font-weight:800; letter-spacing:2.5px; }
+.heading a { color:#fff; }
+.hero-icon { width:86px; height:86px; background:#fff !important; color:var(--cyan); border-radius:24px; display:grid; place-items:center; box-shadow:0 8px 20px rgba(0,0,0,.25); }
+.hero-icon svg { width:54px; height:54px; }
+
+h2 { font-size:21px; color:var(--text); }
+p, .card-title p { color:var(--muted); font-size:16px; }
+.mini { color:var(--muted); font-size:15px; }
+footer { color:var(--muted); font-size:14px; }
+[style*="color:#fff"] { color:var(--text) !important; }
+
+/* ---------- cards ---------- */
+.card { background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); color:var(--text); backdrop-filter:none; }
+.title-icon { width:46px; height:46px; display:grid; place-items:center; background:var(--navy) !important; color:#fff !important; border-radius:50%; }
+.title-icon svg { width:26px; height:26px; }
+.stat { border-left:7px solid var(--cyan); }
+.grid > .stat:nth-child(2) { border-left-color:var(--green); }
+.grid > .stat:nth-child(3) { border-left-color:var(--gold); }
+.grid > .stat:nth-child(4) { border-left-color:var(--navy); }
+.stat label { color:var(--muted); font-size:14px; font-weight:800; letter-spacing:.8px; }
+.stat strong { color:var(--navy); font-size:34px; }
+.chip { background:#fff; border:2px solid var(--line); color:var(--text); font-size:16.5px; font-weight:700; border-radius:14px; }
+.chip:hover { border-color:var(--cyan); background:#f1f6fd; }
+
+/* ---------- forms + buttons ---------- */
+.field label { color:var(--text); font-size:14px; font-weight:800; }
+.field input, .field select, .field textarea, input, select, textarea { background:#fff; color:var(--text); border:2px solid #aebfd1; border-radius:11px; font-size:17px; padding:13px 14px; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color:var(--cyan); box-shadow:0 0 0 4px rgba(20,87,184,.18); outline:0; }
+.btn { font-size:17px; font-weight:800; padding:14px 22px; border-radius:11px; }
+.btn.primary { background:var(--cyan); color:#fff; box-shadow:0 4px 0 #0c3d85; }
+.btn.primary:hover { background:#0f4694; }
+.btn.ghost { background:#fff; color:var(--text); border:2px solid #aebfd1; }
+.badge { font-size:13px; font-weight:800; }
+:focus-visible { outline:3px solid var(--gold) !important; outline-offset:2px; }
+
+/* ---------- tables / lists ---------- */
+.table-wrap { overflow:auto; border-radius:12px; border:1px solid var(--line); }
+table { width:100%; }
+th { background:var(--navy); color:#fff; font-size:13px; font-weight:800; letter-spacing:.7px; padding:12px 14px; text-align:left; }
+td { color:var(--text); font-size:16px; border-bottom:1px solid #e3ebf3; padding:11px 14px; }
+tr:nth-child(even) td { background:#f6f9fc; }
+.stationline { color:var(--text); font-size:16.5px; }
+.empty { color:var(--muted); font-size:16px; text-align:center; padding:18px; }
+.toast { background:var(--navy); color:#fff; font-size:17px; border-radius:12px; border-left:6px solid var(--gold); }
+.row-actions span { cursor:pointer; margin-right:14px; font-size:15px; font-weight:800; text-decoration:underline; }
+.row-actions .edit { color:var(--cyan); } .row-actions .del { color:var(--danger); }
+.pill { display:inline-block; padding:3px 11px; border-radius:999px; font-size:13px; font-weight:800; }
+.pill.ok { background:#d3f3e3; color:#075c37; } .pill.warn { background:#ffe9a8; color:#6b4300; } .pill.bad { background:#fbd5dc; color:#8f0e25; }
+.bars { display:flex; align-items:flex-end; gap:14px; height:170px; padding-top:10px; }
+.bars .bar { flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; font-size:13px; color:var(--muted); gap:6px; }
+.bars .bar i { display:block; width:100%; max-width:46px; border-radius:8px 8px 0 0; background:var(--cyan); min-height:4px; }
+.bars .bar:nth-child(even) i { background:var(--green); }
+.bars .bar b { color:var(--text); font-size:15px; }
+.hbar { height:10px; border-radius:6px; background:#dce6f0; margin-top:6px; overflow:hidden; }
+.hbar i { display:block; height:100%; background:var(--green); }
+.ticket-box { text-align:center; }
+.ticket-meta { display:grid; grid-template-columns:1fr 1fr; gap:8px; text-align:left; margin:14px 0; font-size:15px; }
+.ticket-meta span { color:var(--muted); display:block; font-size:12px; letter-spacing:1px; }
+.fare-note { margin-top:10px; padding:12px 16px; border-radius:12px; background:#eaf1fb; border:2px solid #c5d6ec; font-size:16px; }
+
+/* ---------- station list on Metro Lines page: look like a line diagram ---------- */
+.stationline { position:relative; }
+.stationline .dot { width:14px; height:14px; border:3px solid #fff; box-shadow:0 0 0 3px currentColor; }
+
+/* ---------- admin dashboard module tiles ---------- */
+.mod { display:flex; flex-direction:column; gap:6px; text-decoration:none; color:inherit; border-bottom:6px solid var(--cyan); transition:transform .15s, box-shadow .15s; }
+.mod:hover { transform:translateY(-4px); box-shadow:0 14px 30px rgba(15,31,51,.18); }
+.mod-ic { width:60px; height:60px; border-radius:50%; display:grid; place-items:center; color:#fff; background:var(--cyan); }
+.mod-ic svg { width:32px; height:32px; }
+.grid > .mod:nth-child(even) { border-bottom-color:var(--green); }
+.grid > .mod:nth-child(even) .mod-ic { background:var(--green); }
+.grid > .mod:nth-child(3n) { border-bottom-color:var(--navy); }
+.grid > .mod:nth-child(3n) .mod-ic { background:var(--navy); }
+.mod h2 { font-size:20px; margin-top:6px; }
+.mod p { font-size:15.5px; flex:1; }
+.mod-count { font-size:22px; font-weight:800; color:var(--navy); }
+.mod-btn { margin-top:6px; font-weight:800; font-size:15px; color:var(--cyan); }
+.is-admin .user-only { display:none !important; }
+
+/* ---------- login / register ---------- */
+.auth { background:#fff; border:1px solid var(--line); box-shadow:0 24px 70px rgba(11,42,91,.28); backdrop-filter:none; }
+.auth .hero { color:#fff; background:
+    linear-gradient(160deg, rgba(11,42,91,.94), rgba(20,87,184,.82) 60%, rgba(18,153,79,.78)),
+    url("images/chennai-metro.jpg") center / cover no-repeat, url("images/metro-bg.svg") center / cover no-repeat; }
+.auth .logo h1 { color:#fff; font-size:28px; } .auth .logo span { color:var(--gold); }
+.auth .mark { width:48px; height:48px; }
+.auth .hero h2 { color:#fff; font-size:36px; } .auth .hero p { color:#e3eeff; font-size:17px; }
+.auth .features div { color:#fff; font-size:16px; font-weight:600; border:2px solid rgba(255,255,255,.4); background:rgba(255,255,255,.12); }
+.auth .tabs { background:#eaf1fb; border:2px solid #c5d6ec; }
+.auth .tab { color:var(--text); font-size:17px; font-weight:700; }
+.auth .tab.active { background:var(--cyan); color:#fff; }
+.auth .form h2 { color:var(--text); font-size:26px; } .auth .sub { color:var(--muted); font-size:16px; }
+.auth .field label { color:var(--text); font-size:14px; font-weight:800; }
+.auth .field input { background:#fff; color:var(--text); border:2px solid #aebfd1; font-size:17px; padding:13px; }
+.auth .submit { background:var(--cyan); color:#fff; font-size:18px; padding:15px; box-shadow:0 4px 0 #0c3d85; }
+.auth .submit.ghost { background:#fff; color:var(--text); border:2px solid #aebfd1; box-shadow:none; }
+.auth .link { color:var(--cyan); font-size:16px; font-weight:700; text-decoration:underline; }
+.auth .msg { color:var(--danger); font-size:15px; font-weight:700; }
+.auth .demo { color:var(--text); background:#fff6d6; border:2px dashed var(--orange); font-size:15px; }
+.pwd-eye { color:var(--text); }
+
+/* ---------- small screens: nav wraps under the logo ---------- */
+@media (max-width:900px) {
+  .sidebar { height:auto; flex-wrap:wrap; padding:10px 14px !important; gap:8px; }
+  .nav { order:3; flex-basis:100%; }
+  .main { padding-top:128px; }
+  .topbar { padding:10px 16px 0 !important; }
+}
+.nav a { font-size:14px; padding:9px 9px !important; gap:5px; }
+.sidebar { gap:12px; }
+
+/* ===== Photo theme: built around the Chennai Metro station photo ===== */
+body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(233,238,245,.55) 0%, rgba(233,238,245,.80) 45%, rgba(233,238,245,.90) 100%),
+    url("images/chennai-metro.jpg") center / cover no-repeat, var(--bg); }
+.sidebar { background:linear-gradient(90deg,#061f57,#0a3490) !important; }
+.sidebar::after { background:linear-gradient(90deg,#1f6bff 0 50%,#f5c400 50% 100%); }
+.brand h2 span { color:var(--gold); }
+.card { background:rgba(255,255,255,.95); }
+.heading { background:
+    linear-gradient(95deg, rgba(5,28,86,.95) 0%, rgba(7,42,115,.82) 38%, rgba(7,42,115,.15) 75%, rgba(0,0,0,0) 100%),
+    url("images/chennai-metro.jpg") center 55% / cover no-repeat; min-height:210px; display:flex; align-items:center; justify-content:space-between; }
+.heading::after { content:""; position:absolute; left:0; right:0; bottom:0; height:7px; background:linear-gradient(90deg,#1f6bff 0 60%,#f5c400 60% 100%); }
+.hero-icon { background:rgba(255,255,255,.95) !important; }
+.stat { border-left-color:var(--cyan); }
+.grid > .stat:nth-child(2) { border-left-color:var(--gold); }
+.grid > .stat:nth-child(3) { border-left-color:var(--steel); }
+.grid > .stat:nth-child(4) { border-left-color:var(--navy); }
+.mod { border-bottom-color:var(--cyan); }
+.mod-ic { background:var(--cyan); color:#fff; }
+.grid > .mod:nth-child(even) { border-bottom-color:var(--gold); }
+.grid > .mod:nth-child(even) .mod-ic { background:var(--gold); color:#072a73; }
+.grid > .mod:nth-child(3n) { border-bottom-color:var(--steel); }
+.grid > .mod:nth-child(3n) .mod-ic { background:var(--steel); color:#fff; }
+.bars .bar:nth-child(even) i { background:var(--gold); }
+.hbar i { background:linear-gradient(90deg,var(--cyan),#3c7bff); }
+.btn.primary { background:var(--cyan); box-shadow:0 4px 0 #062a73; }
+.btn.primary:hover { background:#0a3590; }
+.auth .submit { background:var(--cyan); box-shadow:0 4px 0 #062a73; }
+.auth .tab.active { background:var(--cyan); }
+.auth .hero { background:
+    linear-gradient(165deg, rgba(5,28,86,.93) 0%, rgba(7,42,115,.78) 55%, rgba(7,42,115,.35) 100%),
+    url("images/chennai-metro.jpg") 62% center / cover no-repeat; }
+.auth .logo span, .auth .hero h2 em { color:var(--gold); }
+.row-actions .edit, .auth .link, .mod-btn { color:var(--cyan); }
+.toast { border-left-color:var(--gold); }
+.pill.warn { background:#fff0b3; color:#5c4300; }
+html { background:var(--bg); }
+@media (max-width:900px){ .heading { flex-direction:row; } }
+
+/* Blue / Green line sections on Station Management */
+.line-head { display:flex; align-items:center; gap:12px; margin:26px 0 10px; padding:10px 16px; border-radius:12px; color:#fff; }
+.line-head h2 { color:#fff; font-size:21px; margin:0; }
+.line-head.blue { background:#1457b8; } .line-head.green { background:#12994f; }
+.line-dot { width:16px; height:16px; border-radius:50%; background:#fff; box-shadow:0 0 0 4px rgba(255,255,255,.35); }
+.line-count { margin-left:auto; font-weight:800; font-size:14px; background:rgba(255,255,255,.22); padding:4px 12px; border-radius:999px; }
+
+/* Background photo: show it clearly (light veil only), crisp, whole scene */
+body::before { background:
+    linear-gradient(180deg, rgba(8,28,70,.10) 0%, rgba(233,238,245,.18) 60%, rgba(233,238,245,.30) 100%),
+    url("images/chennai-metro.jpg") center 60% / cover no-repeat, var(--bg) !important; }
+
+/* =====================================================================
+   TRANSPARENT (frosted glass) THEME - built for the dusk station photo
+   Deep blue train + golden skylight + yellow platform line
+   ===================================================================== */
+:root { --navy:#0a1f5c; --cyan:#1d3fa8; --blue:#1d3fa8; --gold:#ffb703; --steel:#4a5a73;
+  --text:#0a1626; --muted:#33465e; --line:rgba(255,255,255,.55); }
+html { background:#dfe8f3; }
+body::before { background:
+    linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 55%, rgba(5,14,38,.12) 100%),
+    url("images/chennai-metro.jpg") center / cover no-repeat, #dfe8f3 !important; }
+
+/* top bar: translucent dark glass */
+.sidebar { background:rgba(6,20,56,.62) !important; backdrop-filter:blur(16px) saturate(140%) !important; -webkit-backdrop-filter:blur(16px) saturate(140%) !important;
+  box-shadow:0 6px 24px rgba(0,0,0,.35); }
+.sidebar::after { background:linear-gradient(90deg,#2a62ff 0 50%,#ffb703 50% 100%); }
+.nav a.active { background:rgba(255,255,255,.92); color:#0a1f5c; }
+.nav a:hover { background:rgba(255,255,255,.18); }
+
+/* glass cards */
+.card { background:rgba(255,255,255,.70); border:1px solid rgba(255,255,255,.65); border-radius:18px;
+  backdrop-filter:blur(16px) saturate(150%); -webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:0 10px 32px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.7); }
+.mod:hover { background:rgba(255,255,255,.82); box-shadow:0 18px 40px rgba(0,0,0,.35); }
+.profile { background:rgba(255,255,255,.72); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.65); }
+.topbar .date, .topbar h3 { color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.65); }
+footer { color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.7); }
+.heading { background:
+    linear-gradient(95deg, rgba(5,16,50,.88) 0%, rgba(8,28,84,.62) 42%, rgba(8,28,84,.10) 80%, rgba(0,0,0,0) 100%),
+    url("images/chennai-metro.jpg") center 58% / cover no-repeat;
+  border:1px solid rgba(255,255,255,.35); box-shadow:0 12px 34px rgba(0,0,0,.4); }
+.heading::after { background:linear-gradient(90deg,#2a62ff 0 60%,#ffb703 60% 100%); }
+.hero-icon { background:rgba(255,255,255,.88) !important; backdrop-filter:blur(8px); }
+h2 { color:var(--text); }
+[style*="font-size:12px;color:var(--muted)"] { color:var(--muted); }
+/* section titles that sit directly on the photo */
+.content > h2, #adminHome > h2 { color:#fff !important; text-shadow:0 2px 8px rgba(0,0,0,.7); }
+
+/* stats */
+.stat { border-left-width:7px; }
+.grid > .stat:nth-child(2) { border-left-color:var(--gold); }
+.grid > .stat:nth-child(3) { border-left-color:#3aa6c9; }
+.grid > .stat:nth-child(4) { border-left-color:#0a1f5c; }
+.stat strong { color:#0a1f5c; }
+.mod { border-bottom:0; }
+.mod-ic { background:linear-gradient(135deg,#1d3fa8,#3d6bff); box-shadow:0 6px 14px rgba(29,63,168,.45); }
+.grid > .mod:nth-child(even) .mod-ic { background:linear-gradient(135deg,#ffb703,#ffd24d); color:#0a1f5c; box-shadow:0 6px 14px rgba(255,183,3,.45); }
+.grid > .mod:nth-child(3n) .mod-ic { background:linear-gradient(135deg,#0a1f5c,#2a3f86); color:#fff; }
+
+/* inputs + tables become translucent too */
+.field input, .field select, .field textarea, input, select, textarea { background:rgba(255,255,255,.88); border:2px solid rgba(10,31,92,.35); }
+.table-wrap { background:rgba(255,255,255,.35); border:1px solid rgba(255,255,255,.6); }
+th { background:rgba(10,31,92,.90); }
+td { background:transparent; border-bottom:1px solid rgba(10,31,92,.14); }
+tr:nth-child(even) td { background:rgba(255,255,255,.38); }
+.chip { background:rgba(255,255,255,.72); border:1px solid rgba(255,255,255,.7); backdrop-filter:blur(10px); }
+.chip:hover { background:rgba(255,255,255,.9); }
+.fare-note { background:rgba(255,255,255,.65); border:1px solid rgba(10,31,92,.25); }
+.btn.primary { background:linear-gradient(135deg,#1d3fa8,#3d6bff); box-shadow:0 6px 16px rgba(29,63,168,.5); }
+.btn.ghost { background:rgba(255,255,255,.8); }
+.toast { background:rgba(6,20,56,.92); backdrop-filter:blur(10px); }
+
+/* login */
+.auth { background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.55); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 28px 80px rgba(0,0,0,.5); }
+.auth .box { background:rgba(255,255,255,.80); }
+.auth .hero { background:
+    linear-gradient(165deg, rgba(5,16,50,.80) 0%, rgba(8,28,84,.50) 60%, rgba(8,28,84,.25) 100%),
+    url("images/chennai-metro.jpg") 78% center / cover no-repeat; }
+.auth .tabs { background:rgba(255,255,255,.6); }
+.auth .tab.active, .auth .submit { background:linear-gradient(135deg,#1d3fa8,#3d6bff); color:#fff; }
+.auth .field input { background:rgba(255,255,255,.92); }
+.auth .demo { background:rgba(255,246,214,.9); }
+
+.stat { border-left-color:#1d3fa8; }
+.grid > .stat:nth-child(2) { border-left-color:var(--gold); }
+.grid > .stat:nth-child(3) { border-left-color:#3aa6c9; }
+.grid > .stat:nth-child(4) { border-left-color:#0a1f5c; }
+
+/* bright background: dark text with a soft white glow where text sits directly on the photo */
+.topbar .date, .topbar h3, footer { color:#0f1f33; text-shadow:0 0 10px rgba(255,255,255,.95), 0 0 2px rgba(255,255,255,.9); }
+.content > h2, #adminHome > h2 { color:#0f1f33 !important; text-shadow:0 0 10px rgba(255,255,255,.95), 0 0 2px rgba(255,255,255,.9); }
+
+/* readable chips for text that sits directly on the photo */
+.top-left > div:last-child { background:rgba(255,255,255,.82); backdrop-filter:blur(8px); padding:8px 18px; border-radius:14px; box-shadow:0 4px 14px rgba(0,0,0,.15); }
+.topbar .date, .topbar h3 { text-shadow:none; color:#0f1f33; }
+.content > h2, #adminHome > h2 { display:inline-block; background:rgba(255,255,255,.82); backdrop-filter:blur(8px); padding:8px 20px; border-radius:14px; text-shadow:none; box-shadow:0 4px 14px rgba(0,0,0,.15); }
+footer { display:block; width:fit-content; margin:20px auto; background:rgba(255,255,255,.82); padding:8px 20px; border-radius:12px; text-shadow:none; }
+
+/* nine menu items must fit on a laptop: hide the small subtitle under the logo on narrower screens */
+@media (max-width:1500px){ .brand small { display:none; } .nav a { font-size:13.5px; padding:9px 8px !important; } }
+@media (max-width:1500px){ .nav a { font-size:13px; padding:9px 6px !important; gap:4px; } .nav a i svg { width:19px; height:19px; } .sidebar { gap:10px; padding:0 16px !important; } .logout { padding:9px 13px !important; font-size:13.5px; } }
+
+.line-head { border:1px solid rgba(255,255,255,.4); }
+.line-count { background:rgba(0,0,0,.18); color:inherit; }
+
+/* payment step */
+.pay-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+.pay-tabs button { padding:12px 6px; border-radius:12px; border:2px solid #aebfd1; background:rgba(255,255,255,.9); color:var(--text); font-size:16px; font-weight:800; cursor:pointer; }
+.pay-tabs button.on { background:var(--cyan); border-color:var(--cyan); color:#fff; }
+.qr-img { display:block; margin:12px auto; width:230px; height:230px; border-radius:12px; border:6px solid #fff; background:#fff; }
+
+/* Where Is My Train style pages */
+.tcards { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px; }
+.tcard { cursor:pointer; transition:transform .12s, box-shadow .12s; }
+.tcard:hover { transform:translateY(-3px); box-shadow:0 14px 30px rgba(0,0,0,.28); }
+table.tt tr.st-passed td { color:#6b7a90; }
+table.tt tr.st-here td { background:#fff3c4 !important; font-size:18px; }
+table.tt tr.st-focus td { background:#e3f2ff !important; }
+.card-title .btn { white-space:nowrap; }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smart Metro Management System | Add Train</title>
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
+</head>
+<body data-page="trains">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
+<nav class="nav">
+    <a href="index.html"><i>⌂</i>Dashboard</a>
+    <a href="route.html"><i>⇄</i>Route Finder</a>
+    <a href="fare.html"><i>₹</i>Fare Calculator</a>
+    <a href="travel-time.html"><i>◷</i>Travel Time</a>
+    <a href="nearby.html"><i>⌖</i>Nearby Station</a>
+    <a href="ticket.html"><i>▤</i>Book Ticket</a>
+    <a href="favorites.html"><i>♡</i>Favorites</a>
+    <a href="history.html"><i>◴</i>Booking History</a>
+    <a href="admin-dashboard.html"><i>⚙</i>Admin</a>
+
+</nav>
+<button class="logout" id="logout">↪ Logout</button>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Train Management</h3></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
+</header>
+<div class="toast" id="toast"></div>
+<section class="content">
+<div class="heading"><div><div class="eyebrow">ADMIN CONSOLE</div><h1>Add Train</h1><p>Add new trains and manage the fleet: change status or capacity, or delete a train.</p></div><div class="hero-icon">🚆</div></div>
+<div class="card"><div class="card-title"><div class="title-icon">🚆</div><div><h2>Add a train</h2><p>Add a new train, or edit and delete trains in the fleet below</p></div></div>
+<form id="frm" class="form-grid"><div class="field"><label>TRAIN CODE</label><input name="code" placeholder="MX-301" required></div><div class="field"><label>TRAIN NAME</label><input name="name" placeholder="Blue Express 3" required></div><div class="field"><label>LINE</label><select name="line"><option value="Blue">Blue Line</option><option value="Green">Green Line</option></select></div><div class="field"><label>CAPACITY (PASSENGERS)</label><input name="capacity" type="number" min="1" value="900" required></div><div class="field"><label>STATUS</label><select name="status"><option>Available</option><option>Maintenance</option><option>Out of Service</option></select></div><div class="field full"><button class="btn primary" type="submit">Add Train</button> <button class="btn ghost cancel" type="button" style="display:none">Cancel</button></div></form>
+<div class="table-wrap" style="margin-top:16px"><table id="tbl"></table></div></div>
+
+</section>
+<footer>© 2026 Smart Metro Management System</footer>
+</main>
+<script src="backend.js"></script>
+<script src="core.js"></script>
+<script src="modules.js"></script>
+</body>
+</html>

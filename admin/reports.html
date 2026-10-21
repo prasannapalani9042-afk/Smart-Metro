@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smart Metro Management System | Reports</title>
+<link rel="stylesheet" href="../index.css">
+<link rel="stylesheet" href="../theme.css">
+<script src="../adminnav.js"></script>
+<script src="../icons.js"></script>
+</head>
+<body data-page="reports">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
+<nav class="nav">
+    <a href="../index.html"><i>⌂</i>Dashboard</a>
+    <a href="../route.html"><i>⇄</i>Route Finder</a>
+    <a href="../fare.html"><i>₹</i>Fare Calculator</a>
+    <a href="../travel-time.html"><i>◷</i>Travel Time</a>
+    <a href="../nearby.html"><i>⌖</i>Nearby Station</a>
+    <a href="../ticket.html"><i>▤</i>Book Ticket</a>
+    <a href="../favorites.html"><i>♡</i>Favorites</a>
+    <a href="../history.html"><i>◴</i>Booking History</a>
+    <a href="admin-dashboard.html"><i>⚙</i>Admin</a>
+
+</nav>
+<button class="logout" id="logout">↪ Logout</button>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Reports</h3></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
+</header>
+<div class="toast" id="toast"></div>
+<section class="content">
+<div class="heading"><div><div class="eyebrow">ADMIN CONSOLE</div><h1>Reports</h1><p>Money collection and passengers: daily, weekly and monthly, with the peak week.</p></div><div class="hero-icon">📊</div></div>
+<div class="card"><div style="display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap">
+<div class="field" style="min-width:220px"><label>SELECT MONTH</label><input type="month" id="rpMonth"></div>
+<button class="btn primary" id="csv" type="button">Export daily report (CSV)</button></div>
+<p class="mini" style="margin-top:10px">Numbers count confirmed tickets by travel date. Cancelled tickets are not counted.</p></div>
+<div class="grid g4" id="kpis" style="margin-top:16px"></div>
+<div class="card" style="margin-top:16px"><div class="card-title"><div class="title-icon">📈</div><div><h2>Weekly report</h2><p id="weekSub">Collection per week of the month</p></div></div><div id="weekChart"></div><div class="table-wrap" style="margin-top:14px"><table id="weekTbl"></table></div></div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><div class="card-title"><div class="title-icon">📅</div><div><h2>Daily report</h2><p>Money collected and passengers each day</p></div></div><div class="table-wrap" style="max-height:460px;overflow:auto"><table id="dayTbl"></table></div></div>
+<div class="card"><div class="card-title"><div class="title-icon">🗓</div><div><h2>Monthly report</h2><p>Last 12 months</p></div></div><div class="table-wrap" style="max-height:460px;overflow:auto"><table id="monTbl"></table></div></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><div class="card-title"><div class="title-icon">💳</div><div><h2>Payment modes</h2><p>Collection by UPI, QR, Card and Cash this month</p></div></div><div id="payModes"></div></div>
+<div class="card"><div class="card-title"><div class="title-icon">🏆</div><div><h2>Top routes</h2><p>By confirmed bookings</p></div></div><div id="top"></div></div>
+</div>
+<div class="card" style="margin-top:16px"><div class="card-title"><div class="title-icon">🎫</div><div><h2>Recent bookings</h2><p>Latest tickets with payment mode</p></div></div><div class="table-wrap"><table id="tbl"></table></div></div>
+</section>
+<footer>© 2026 Smart Metro Management System</footer>
+</main>
+<script src="../backend.js"></script>
+<script src="../core.js"></script>
+<script src="../modules.js"></script>
+</body>
+</html>

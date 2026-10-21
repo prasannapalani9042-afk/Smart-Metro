@@ -4,15 +4,17 @@ const $$ = s => document.querySelectorAll(s);
 
 /* ---- Metro data (real Chennai Metro Phase 1 topology, 40 base stations) ---- */
 const LINES = {
-  Blue: { color: "#19d9ff", stations: ["Wimco Nagar","Tiruvottiyur","Tiruvottiyur Theradi","Kaladipet","Tollgate","New Washermanpet",
+  Blue: { color: "#1457b8", ink: "#ffffff", dark: "#1457b8", stations: ["Wimco Nagar","Tiruvottiyur","Tiruvottiyur Theradi","Kaladipet","Tollgate","New Washermanpet",
     "Tondiarpet","Sir Theagaraya College","Washermanpet","Mannadi","High Court","Chennai Central","Government Estate","LIC",
     "Thousand Lights","AG-DMS","Teynampet","Nandanam","Saidapet","Little Mount","Guindy","Alandur","Nanganallur Road",
     "Meenambakkam","Airport"] },
-  Green: { color: "#42e6a4", stations: ["Chennai Central","Egmore","Nehru Park","Kilpauk","Pachaiyappa's College","Shenoy Nagar",
+  Green: { color: "#12994f", ink: "#ffffff", dark: "#0d7a3e", stations: ["Chennai Central","Egmore","Nehru Park","Kilpauk","Pachaiyappa's College","Shenoy Nagar",
     "Anna Nagar East","Anna Nagar Tower","Thirumangalam","Koyambedu","CMBT","Arumbakkam","Vadapalani","Ashok Nagar",
-    "Ekkatuthangal","Alandur","St. Thomas Mount"] }
+    "Ekkatuthangal","Alandur","St. Thomas Mount"] },
+  /* Phase 2, opened 11 October 2026: Poonamallee Bypass - Vadapalani (11 elevated stations). Interchange with the Green Line at Vadapalani. */
+  Yellow: { color: "#f2b705", ink: "#10243a", dark: "#8a5a00", stations: ["Poonamallee Bypass","Poonamallee Bus Stand","Poonamallee Government Hospital",
+    "Karayanchavadi","Kumananchavadi","Kattupakkam","Iyyappanthangal","Thelliyaragaram","Porur Bypass","Porur Junction","Vadapalani"] }
 };
-const HUBS = ["Chennai Central","Alandur"]; /* real interchange stations shared by both lines */
 
 /* ---- Admin-added stations (from Admin Panel) are merged live into each line ---- */
 function getAdminStations(){ return JSON.parse(localStorage.getItem('metroAdminStations')||'[]'); }
@@ -26,11 +28,12 @@ function allStations(){
   let l = [];
   Object.entries(LINES).forEach(([ln]) => {
     const stations = lineStations(ln);
-    stations.forEach((s,i) => l.push({
-      name: s, line: ln,
-      lat: base.lat + (i*0.006-0.06) * (ln==="Blue"?1:-1),
-      lng: base.lng + (i*0.007-0.06) * (ln==="Blue"?-1:1)
-    }));
+    stations.forEach((s,i) => {
+      const p = ln==="Blue" ? {lat:base.lat+(i*0.006-0.06), lng:base.lng-(i*0.007-0.06)}
+              : ln==="Green" ? {lat:base.lat-(i*0.006-0.06), lng:base.lng+(i*0.007-0.06)}
+              : {lat:base.lat-0.012-(i*0.0012), lng:base.lng-0.06-(i*0.0075)};
+      l.push({name:s, line:ln, lat:p.lat, lng:p.lng});
+    });
   });
   return l;
 }
@@ -38,41 +41,36 @@ function uniqueNames(){ return [...new Set(allStations().map(s=>s.name))].sort()
 function lineOf(name){ return allStations().filter(s=>s.name===name).map(s=>s.line); }
 function isInterchange(name){ return lineOf(name).length>1; }
 
+/* Shortest path over all lines. A stop costs 100, changing line costs 1 (so fewer changes win a tie). Works for any number of interchanges. */
 function findPath(from,to){
   if(from===to) return null;
-  const fL=lineOf(from), tL=lineOf(to);
-  const common=fL.filter(l=>tL.includes(l));
-  if(common.length){
-    const line=common[0], arr=lineStations(line);
-    const i1=arr.indexOf(from), i2=arr.indexOf(to);
-    const seg=i1<i2?arr.slice(i1,i2+1):arr.slice(i2,i1+1).reverse();
-    return {segments:[{line,stations:seg}],interchange:false};
+  const names=Object.keys(LINES), seqs={};
+  names.forEach(l=>{ seqs[l]=lineStations(l); });
+  const key=(l,i)=>l+'|'+i, dist={}, prev={}, done={}, pq=[];
+  const push=(k,d,p)=>{ if(dist[k]===undefined||d<dist[k]){ dist[k]=d; prev[k]=p; pq.push([d,k]); } };
+  names.forEach(l=>seqs[l].forEach((s,i)=>{ if(s===from) push(key(l,i),0,null); }));
+  let end=null;
+  while(pq.length){
+    pq.sort((a,b)=>a[0]-b[0]);
+    const [d,k]=pq.shift(); if(done[k]) continue; done[k]=1;
+    const parts=k.split('|'), l=parts[0], i=+parts[1], s=seqs[l][i];
+    if(s===to){ end=k; break; }
+    [i-1,i+1].forEach(j=>{ if(j>=0&&j<seqs[l].length) push(key(l,j),d+100,k); });
+    names.forEach(l2=>{ if(l2!==l){ const j=seqs[l2].indexOf(s); if(j>-1) push(key(l2,j),d+1,k); } });
   }
-  /* try every real interchange (Chennai Central, Alandur) and use whichever gives the shortest route */
-  let best=null;
-  fL.forEach(l1=>{
-    tL.forEach(l2=>{
-      HUBS.forEach(hub=>{
-        if(!lineOf(hub).includes(l1) || !lineOf(hub).includes(l2)) return;
-        const a1=lineStations(l1), a2=lineStations(l2);
-        const i1=a1.indexOf(from), h1=a1.indexOf(hub);
-        if(i1===-1||h1===-1) return;
-        const seg1=i1<h1?a1.slice(i1,h1+1):a1.slice(h1,i1+1).reverse();
-        const h2=a2.indexOf(hub), i2=a2.indexOf(to);
-        if(h2===-1||i2===-1) return;
-        const seg2=h2<i2?a2.slice(h2,i2+1):a2.slice(i2,h2+1).reverse();
-        const path={segments:[{line:l1,stations:seg1},{line:l2,stations:seg2}],interchange:true};
-        const total=path.segments.reduce((n,s)=>n+s.stations.length,0)-1;
-        if(!best || total<best.total) best={path,total};
-      });
-    });
+  if(!end) return null;
+  const states=[]; for(let k=end;k;k=prev[k]) states.push(k); states.reverse();
+  const segments=[];
+  states.forEach(k=>{
+    const parts=k.split('|'), l=parts[0], s=seqs[l][+parts[1]], last=segments[segments.length-1];
+    if(last&&last.line===l) last.stations.push(s); else segments.push({line:l,stations:[s]});
   });
-  return best ? best.path : null;
+  return {segments,interchange:segments.length-1};
 }
-function nodeCount(p){ return p.segments.reduce((n,s)=>n+s.stations.length,0)-(p.interchange?1:0); }
+function nodeCount(p){ return p.segments.reduce((n,s)=>n+s.stations.length,0)-(p.segments.length-1); }
 function stopCount(p){ return nodeCount(p)-1; }
 function fareFor(stops){ return stops<=2?10:stops<=5?20:stops<=9?30:stops<=13?40:50; }
-function timeFor(stops,ic){ return Math.round(stops*2.5+(ic?4:0)); }
+function timeFor(stops,ic){ return Math.round(stops*2.5+(+ic||0)*4); }
 function haversine(a,b){
   const R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;
   const x=Math.sin(dLat/2)**2+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)**2;
@@ -81,7 +79,7 @@ function haversine(a,b){
 function renderPathHTML(path,total){
   let html=`<div style="margin:6px 0 12px;font-size:13px;color:var(--muted)">Total stations in this route: <b style="color:#fff">${total}</b></div>`;
   path.segments.forEach(seg=>{
-    html+=`<div style="margin:10px 0 4px"><span class="badge" style="background:${LINES[seg.line].color}22;color:${LINES[seg.line].color}">${seg.line} Line</span></div>`;
+    html+=`<div style="margin:10px 0 4px"><span class="badge" style="background:${LINES[seg.line].color}22;color:${LINES[seg.line].dark}">${seg.line} Line</span></div>`;
     seg.stations.forEach(st=>{
       html+=`<div class="stationline"><span class="dot" style="background:${LINES[seg.line].color}"></span>${st}${isInterchange(st)?' <span style="color:var(--orange);font-size:11px">⇄ interchange</span>':''}</div>`;
     });
@@ -166,7 +164,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const stops=stopCount(path), fare=fareFor(stops);
     $('#fareResult').innerHTML=`<span class="badge" style="background:rgba(255,161,77,.12);color:var(--orange)">FARE</span>
       <h2 style="margin:10px 0">₹${fare}</h2>
-      <p>${f.value} → ${t.value} · ${nodeCount(path)} stations ${path.interchange?'· includes 1 interchange (no extra charge)':''}</p>`;
+      <p>${f.value} → ${t.value} · ${nodeCount(path)} stations ${path.interchange?'· includes '+path.interchange+' interchange'+(path.interchange>1?'s':'')+' (no extra charge)':''}</p>`;
     pushHistory({from:f.value,to:t.value,type:'Fare ₹'+fare,ts:Date.now()});
   };
 });

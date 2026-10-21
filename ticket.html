@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MetroX | QR Ticket</title>
+<title>Smart Metro Management System | QR Ticket</title>
 <link rel="stylesheet" href="ticket.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
-<div class="brand"><div class="brandmark">M</div><div><h2>Metro<span>X</span></h2><small>SMART METRO</small></div></div>
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
 <nav class="nav">
     <a href="index.html"><i>⌂</i>Dashboard</a>
     <a href="route.html"><i>⇄</i>Route Finder</a>
-    <a href="lines.html"><i>◉</i>Metro Lines</a>
     <a href="fare.html"><i>₹</i>Fare Calculator</a>
     <a href="travel-time.html"><i>◷</i>Travel Time</a>
-    <a href="live-train.html"><i>🚆</i>Live Train</a>
     <a href="nearby.html"><i>⌖</i>Nearby Station</a>
-    <a href="ticket.html"><i>▤</i>QR Ticket</a>
+    <a href="ticket.html"><i>▤</i>Book Ticket</a>
     <a href="favorites.html"><i>♡</i>Favorites</a>
-    <a href="history.html"><i>◴</i>History</a>
+    <a href="history.html"><i>◴</i>Booking History</a>
     <a href="admin/admin-dashboard.html"><i>⚙</i>Admin</a>
 
 </nav>
@@ -27,26 +28,30 @@
 </aside>
 <main class="main">
 <header class="topbar">
-<div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>QR Ticket</h3></div></div>
-<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>MetroX User</small></div></div></div>
+<div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Ticket Booking</h3></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
 </header>
 <div class="toast" id="toast"></div>
 <section class="content">
-<div class="heading"><div><div class="eyebrow">DEMO TICKETING</div><h1>QR Ticket</h1><p>Generate a demo single-journey ticket.</p></div><div class="hero-icon">🎫</div></div>
+<div class="heading"><div><div class="eyebrow">TICKET BOOKING</div><h1>Ticket Booking</h1><p>Book tickets for your journey and get a QR pass.</p></div><div class="hero-icon">🎫</div></div>
 
 <div class="grid g2">
-<div class="card"><div class="card-title"><div class="title-icon">🎫</div><div><h2>Generate ticket</h2><p>Choose source and destination.</p></div></div>
+<div class="card"><div class="card-title"><div class="title-icon">🎫</div><div><h2>Book a ticket</h2><p>Choose journey, date, train and passengers.</p></div></div>
 <form id="ticketForm" class="form-grid">
 <div class="field"><label>FROM STATION</label><select id="qrFrom"></select></div>
 <div class="field"><label>TO STATION</label><select id="qrTo"></select></div>
-<div class="field full"><button class="btn primary block" type="submit">Generate Ticket</button></div>
+<div class="field"><label>TRAVEL DATE</label><input type="date" id="qrDate" required></div>
+<div class="field"><label>PASSENGERS</label><select id="qrPax"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
+<div class="field full"><label>TRAIN</label><select id="qrTrain"></select></div>
+<div class="field full"><div class="fare-note" id="fareNote"></div></div>
+<div class="field full"><button class="btn primary block" type="submit">Continue to Payment</button></div>
 </form></div>
-<div class="card" id="ticketResult"><span class="badge" style="background:rgba(25,217,255,.12);color:var(--cyan)">DEMO</span>
-<h2 style="margin:10px 0">No ticket yet</h2><p>Generate a demo ticket to see your QR code.</p></div>
+<div class="card" id="ticketResult"><span class="badge" style="background:rgba(25,217,255,.12);color:var(--cyan)">PASS</span>
+<h2 style="margin:10px 0">No ticket yet</h2><p>Book a ticket to see your QR code.</p></div>
 </div>
 
 </section>
-<footer>© 2026 MetroX · Smart Metro Travel System</footer>
+<footer>© 2026 Smart Metro Management System</footer>
 </main>
 <script src="backend.js"></script>
 <script src="ticket.js"></script>

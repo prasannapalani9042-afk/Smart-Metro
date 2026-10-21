@@ -1,3 +1,5 @@
+# Smart Metro Management System
+
 METROX - SMART CHENNAI METRO MANAGEMENT SYSTEM (FRONTEND)
 
 HOW TO OPEN
@@ -13,8 +15,7 @@ ADMIN ACCESS
   regular users, and a regular user opening admin/admin-dashboard.html directly is
   redirected back to the dashboard.
 - Stations added in the Admin Panel are saved to the shared station list and
-  immediately appear in Route Finder, Fare Calculator, Travel Time, Metro Lines,
-  QR Ticket and Nearby Station for every user — not just in the admin page.
+  immediately appear in Route Finder, Fare Calculator, Travel Time,   QR Ticket and Nearby Station for every user — not just in the admin page.
 
 NEARBY STATION FINDER — MOBILE NOTE
 - Browsers (Chrome/Safari on mobile especially) block the GPS/location API on
@@ -28,7 +29,6 @@ metro2/
   auth.html/css/js           (each .css and .js file is fully self-contained)
   index.html/css/js          (Dashboard)
   route.html/css/js
-  lines.html/css/js
   fare.html/css/js
   travel-time.html/css/js
   live-train.html/css/js
@@ -59,7 +59,6 @@ metro1/
   auth.html/css/js           (each .css file is self-contained, no shared.css)
   index.html/css/js          (Dashboard)
   route.html/css/js
-  lines.html/css/js
   fare.html/css/js
   travel-time.html/css/js
   live-train.html/css/js
@@ -77,4 +76,21 @@ IMPORTANT
 - For a real deployment, connect a backend (e.g. Spring Boot + MySQL as in the original
   Smart Metro Management System project overview) and real metro data/APIs.
 
-© 2026 MetroX · Smart Metro Travel System
+© 2026 Smart Metro Management System
+
+
+## New modules (Smart Metro Management System)
+| Module | Where |
+|---|---|
+| Admin Login | `auth.html` (admin@metrox.com / admin123) |
+| Station Management (add / edit / delete) | Admin → Stations |
+| Train Management (details + availability) | Admin → Trains |
+| Route Management (source, destination, via stations) | Admin → Routes |
+| Schedule Management (timings + frequency) | Admin → Schedules |
+| Ticket Booking (date, train, passengers) | Book Ticket |
+| Fare Calculation (source/destination based) | Fare Calculator + live fare in Book Ticket |
+| Booking History (with cancel) | Booking History |
+| Reports (bookings, revenue, passengers, top routes, CSV export) | Admin → Reports |
+
+New SQLite tables: `trains`, `routes`, `schedules`, `bookings` (sample data is seeded on first run).
+Background image: `images/metro-bg.svg` - replace it (or change the `url()` in `theme.css`) to use your own metro photo.

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smart Metro Management System | Admin Panel</title>
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
+<nav class="nav">
+    <a href="index.html"><i>⌂</i>Dashboard</a>
+    <a href="route.html"><i>⇄</i>Route Finder</a>
+    <a href="fare.html"><i>₹</i>Fare Calculator</a>
+    <a href="travel-time.html"><i>◷</i>Travel Time</a>
+    <a href="nearby.html"><i>⌖</i>Nearby Station</a>
+    <a href="ticket.html"><i>▤</i>Book Ticket</a>
+    <a href="favorites.html"><i>♡</i>Favorites</a>
+    <a href="history.html"><i>◴</i>Booking History</a>
+    <a href="admin-dashboard.html"><i>⚙</i>Admin</a>
+
+</nav>
+<button class="logout" id="logout">↪ Logout</button>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Station Management</h3></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
+</header>
+<div class="toast" id="toast"></div>
+<section class="content">
+<div class="heading"><div><div class="eyebrow">ADMIN CONSOLE</div><h1>Station Management</h1><p>Add, edit and delete metro stations. Every station on both lines is listed below.</p></div><div class="hero-icon">⚙</div></div>
+
+<div class="card"><div class="card-title"><div class="title-icon">⚙</div><div><h2>Manage Stations</h2><p>Add, edit or delete stations. New stations you add are marked NEW.</p></div></div>
+<form id="adminForm" class="form-grid">
+<div class="field"><label>STATION NAME</label><input id="stnName" required></div>
+<div class="field"><label>LINE</label><select id="stnLine"></select></div>
+<div class="field full"><button class="btn primary" type="submit" id="stnBtn">Add Station</button> <button class="btn ghost" type="button" id="stnCancel" style="display:none">Cancel</button></div>
+</form>
+<div class="field" style="margin-top:18px"><label>SEARCH ALL STATIONS</label><input id="stnSearch" placeholder="Type a station name…"></div>
+<div id="lineSections"></div>
+</div>
+
+</section>
+<footer>© 2026 Smart Metro Management System</footer>
+</main>
+<script src="backend.js"></script>
+<script src="core.js"></script>
+<script src="stations.js"></script>
+</body>
+</html>

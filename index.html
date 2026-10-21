@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MetroX | Dashboard</title>
+<title>Smart Metro Management System | Dashboard</title>
 <link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="theme.css">
+<script src="adminnav.js"></script>
+<script src="icons.js"></script>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
-<div class="brand"><div class="brandmark">M</div><div><h2>Metro<span>X</span></h2><small>SMART METRO</small></div></div>
+<div class="brand"><div class="brandmark">M</div><div><h2>Smart <span>Metro</span></h2><small>MANAGEMENT SYSTEM</small></div></div>
 <nav class="nav">
     <a href="index.html"><i>⌂</i>Dashboard</a>
     <a href="route.html"><i>⇄</i>Route Finder</a>
-    <a href="lines.html"><i>◉</i>Metro Lines</a>
     <a href="fare.html"><i>₹</i>Fare Calculator</a>
     <a href="travel-time.html"><i>◷</i>Travel Time</a>
-    <a href="live-train.html"><i>🚆</i>Live Train</a>
     <a href="nearby.html"><i>⌖</i>Nearby Station</a>
-    <a href="ticket.html"><i>▤</i>QR Ticket</a>
+    <a href="ticket.html"><i>▤</i>Book Ticket</a>
     <a href="favorites.html"><i>♡</i>Favorites</a>
-    <a href="history.html"><i>◴</i>History</a>
+    <a href="history.html"><i>◴</i>Booking History</a>
     <a href="admin/admin-dashboard.html"><i>⚙</i>Admin</a>
 
 </nav>
@@ -28,42 +29,23 @@
 <main class="main">
 <header class="topbar">
 <div class="top-left"><button class="menu" id="menu">☰</button><div><div class="date" id="date"></div><h3>Dashboard</h3></div></div>
-<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>MetroX User</small></div></div></div>
+<div class="top-right"><div class="profile"><div class="avatar" id="avatar">U</div><div class="profile-info"><strong id="userName">User</strong><small>Smart Metro User</small></div></div></div>
 </header>
 <div class="toast" id="toast"></div>
 <section class="content">
-<div class="heading"><div><div class="eyebrow">SMART METRO HOME</div><h1>MetroX Dashboard</h1><p>Smart Chennai Metro journey tools in one place.</p></div><div class="hero-icon">🚇</div></div>
-
-<div class="grid g4">
-<div class="card stat"><label>STATIONS</label><strong id="statStations">40</strong><span class="mini">Across 2 lines</span></div>
-<div class="card stat"><label>FARE RANGE</label><strong>₹10-₹50</strong><span class="mini">Per journey</span></div>
-<div class="card stat"><label>AVG SPEED</label><strong>2.5 min/stn</strong><span class="mini">Travel estimate</span></div>
-<div class="card stat"><label>FAVORITES</label><strong id="statFav">0</strong><span class="mini">Saved stations</span></div>
+<div class="heading"><div><div class="eyebrow">DASHBOARD</div><h1>Smart Metro Management System</h1><p>Stations, trains, routes, schedules and tickets in one place.</p></div><div class="hero-icon">🚇</div></div>
+<div class="grid g4" id="dKpis"></div>
+<h2 style="margin:26px 0 12px">Quick access</h2>
+<div class="grid g4" id="dModules"></div>
+<div class="grid g2" style="margin-top:20px">
+<div class="card"><div class="card-title"><div class="title-icon">🕒</div><div><h2>Train timings</h2><p>First train, last train and frequency</p></div></div><div class="table-wrap"><table id="dLive"></table></div></div>
+<div class="card"><div class="card-title"><div class="title-icon">🎫</div><div><h2 id="dBkTitle">Recent bookings</h2><p id="dBkSub">Latest tickets</p></div></div><div class="table-wrap"><table id="dBook"></table></div></div>
 </div>
-<div class="card" style="margin-top:16px">
-<div class="card-title"><div class="title-icon">⚡</div><div><h2>Quick Actions</h2><p>Jump to a service</p></div></div>
-<div class="grid g4">
-<a class="chip" href="route.html"><span class="ic">🔍</span>Route Finder</a>
-<a class="chip" href="live-train.html"><span class="ic">📡</span>Live Train</a>
-<a class="chip" href="fare.html"><span class="ic">💰</span>Fare Calculator</a>
-<a class="chip" href="nearby.html"><span class="ic">📍</span>Nearby Station</a>
-<a class="chip" href="lines.html"><span class="ic">🚇</span>Metro Lines</a>
-<a class="chip" href="ticket.html"><span class="ic">🎫</span>QR Ticket</a>
-<a class="chip" href="favorites.html"><span class="ic">❤️</span>Favorites</a>
-<a class="chip" href="history.html"><span class="ic">📜</span>History</a>
-</div>
-</div>
-<div class="grid g2" style="margin-top:16px">
-<div class="card"><div class="card-title"><div class="title-icon">ℹ</div><div><h2>Today's Tip</h2></div></div>
-<p>Interchange at <b style="color:#fff">Chennai Central</b> to switch between Blue and Green lines — no extra ticket needed.</p></div>
-<div class="card"><div class="card-title"><div class="title-icon">◴</div><div><h2>Recent Journey</h2></div></div>
-<div id="homeRecent" class="mini">No recent journeys yet</div></div>
-</div>
-
 </section>
-<footer>© 2026 MetroX · Smart Metro Travel System</footer>
+<footer>© 2026 Smart Metro Management System</footer>
 </main>
 <script src="backend.js"></script>
-<script src="index.js"></script>
+<script src="core.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
